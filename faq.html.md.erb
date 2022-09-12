@@ -411,3 +411,14 @@ If you have no installed the CSI Driver, you may see the following error in buil
 ```console
 'running PreBind plugin "VolumeBinding": binding volumes: timed out waiting for the condition'
 ```
+
+## <a id='faq-24'></a> Using custom CA certificates
+
+If you want to push images to a registry that requires a custom CA certificate, you will need to set the `ca_cert_data` field when [installing kpack](./installing.html#install).
+This will inject the certificates into kpack and the build pod for the build, but it will *not* inject it into the run image.
+
+If you want to add custom CA certificates into the run image you can use the [Paketo CA Certificates Buildpack](https://github.com/paketo-buildpacks/ca-certificates) to inject it, or bake them into the image directly by using CustomStacks.
+
+For more information about using the buildpack, see [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-config-config-buildpack-kp.html#ca-certificates).
+
+For more information about using CustomStacks, see [Managing Custom Stacks](./managing-custom-stacks.html)
